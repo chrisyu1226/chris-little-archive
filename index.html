@@ -3,79 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chris's little archive</title>
+  <title>Chris's Room</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- Door Screen -->
-  <section id="door-screen" class="door-screen">
-    <div class="door-wrap">
-      <div class="door" id="door">
-        <div class="door-sign">Chris’s little archive</div>
-        <div class="door-knob"></div>
+  <!-- Opening Door Scene -->
+  <section id="doorScene" class="door-scene">
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+    <div class="cloud cloud-three"></div>
+
+    <div class="door-frame">
+      <div class="door-sign">
+        Chris’s Room
+        <span>little archive</span>
       </div>
 
-      <button id="knock-btn" class="knock-btn">
-        knock knock ♡
-      </button>
-
-      <p class="door-note">
-        a soft little room for photos, songs, travels, meals, and tiny thoughts
-      </p>
+      <div id="door" class="door">
+        <div class="door-window"></div>
+        <div class="door-knob"></div>
+        <div class="door-decoration">♡</div>
+      </div>
     </div>
+
+    <button id="knockButton" class="knock-button">
+      knock knock ୨୧
+    </button>
+
+    <p class="opening-text">
+      a soft blue room for photos, songs, travels, meals, and tiny thoughts
+    </p>
   </section>
 
-  <!-- Room Screen -->
-  <main id="room-screen" class="room-screen hidden">
-    <div class="room">
-
-      <!-- window -->
-      <div class="window">
-        <div class="blinds"></div>
-        <p>outside world</p>
+  <!-- Room Scene -->
+  <main id="roomScene" class="room-scene hidden">
+    <header class="room-header">
+      <div>
+        <p class="small-label">welcome inside</p>
+        <h1>Chris’s little archive</h1>
       </div>
 
-      <!-- photo board -->
-      <button class="hotspot photo-board" data-modal="photos">
-        <span>photo board</span>
-        <div class="mini-photo one"></div>
-        <div class="mini-photo two"></div>
-        <div class="mini-photo three"></div>
-      </button>
+      <button id="backToDoor" class="small-button">back to door</button>
+    </header>
 
-      <!-- desk -->
-      <button class="hotspot desk" data-modal="travel">
-        <div class="journal">travel journal</div>
-      </button>
+    <section class="room">
+      <!-- Wall -->
+      <div class="wall">
+        <div class="window">
+          <div class="curtain curtain-left"></div>
+          <div class="curtain curtain-right"></div>
+          <div class="sky">
+            <div class="moon"></div>
+            <div class="star star-one">✦</div>
+            <div class="star star-two">✧</div>
+          </div>
+        </div>
 
-      <!-- wardrobe -->
-      <button class="hotspot wardrobe" data-modal="closet">
-        <span>closet</span>
-      </button>
+        <div class="photo-board interactive" data-title="snapshots" data-content="photos i took, little skies, meals, places, and small proof that i was here.">
+          <p>photo board</p>
+          <div class="mini-photo"></div>
+          <div class="mini-photo"></div>
+          <div class="mini-photo"></div>
+        </div>
 
-      <!-- bed -->
-      <div class="bed">
-        <button class="hotspot girl" data-modal="playlist">
-          <span class="girl-head"></span>
-          <span class="girl-body"></span>
-          <span class="headphone">♪</span>
-        </button>
-
-        <button class="thought-bubble" data-modal="thoughts">
-          lately...
-        </button>
+        <div class="shelf">
+          <div class="plant"></div>
+          <div class="book book-one"></div>
+          <div class="book book-two"></div>
+          <div class="book book-three"></div>
+        </div>
       </div>
 
-      <h1 class="room-title">Chris’s little room</h1>
-    </div>
+      <!-- Floor -->
+      <div class="floor">
+        <div class="rug"></div>
+
+        <div class="desk interactive" data-title="tiny thoughts" data-content="some days are just for surviving gently. a song can make an ordinary night feel haunted. this is where tiny feelings stay.">
+          <div class="desk-top"></div>
+          <div class="desk-leg left"></div>
+          <div class="desk-leg right"></div>
+          <div class="laptop">
+            <span>notes</span>
+          </div>
+        </div>
+
+        <div class="record-player interactive" data-title="songs i loved" data-content="songs that feel soft, nostalgic, dramatic, or like a little ghost sitting beside me.">
+          <div class="record"></div>
+          <div class="record-arm"></div>
+          <p>songs</p>
+        </div>
+
+        <div class="suitcase interactive" data-title="places" data-content="Wuhan, Mount Holyoke, Illinois College, Chicago, Busan soon, Fukuoka soon. places i went and places i might miss later.">
+          <div class="handle"></div>
+          <p>places</p>
+        </div>
+
+        <div class="mini-fridge interactive" data-title="what i ate" data-content="tomato egg rice, curry rice, buldak noodles, cucumber, cherry tomatoes, and meals that saved me a little.">
+          <div class="fridge-note">eat</div>
+          <div class="fridge-handle"></div>
+        </div>
+
+        <div class="bed">
+          <div class="pillow"></div>
+          <div class="blanket"></div>
+          <p>soft corner</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="hint">click the objects in the room ♡</p>
   </main>
 
-  <!-- Modal -->
+  <!-- Popup Modal -->
   <div id="modal" class="modal hidden">
     <div class="modal-card">
-      <button id="close-modal" class="close-btn">×</button>
-      <div id="modal-content"></div>
+      <button id="closeModal" class="close-button">×</button>
+      <h2 id="modalTitle"></h2>
+      <p id="modalContent"></p>
     </div>
   </div>
 
