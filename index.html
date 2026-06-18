@@ -8,98 +8,77 @@
 </head>
 
 <body>
-  <main class="page">
-    <section class="hero">
-      <p class="tiny">welcome to</p>
-      <h1>Chris’s little archive 𓆝</h1>
-      <p class="subtitle">
-        photos i took, songs i loved, places i went,
-        things i ate, and tiny feelings i didn’t want to lose.
+  <!-- Door Screen -->
+  <section id="door-screen" class="door-screen">
+    <div class="door-wrap">
+      <div class="door" id="door">
+        <div class="door-sign">Chris’s little archive</div>
+        <div class="door-knob"></div>
+      </div>
+
+      <button id="knock-btn" class="knock-btn">
+        knock knock ♡
+      </button>
+
+      <p class="door-note">
+        a soft little room for photos, songs, travels, meals, and tiny thoughts
       </p>
+    </div>
+  </section>
 
-      <nav class="nav">
-        <a href="#snapshots">snapshots</a>
-        <a href="#songs">songs</a>
-        <a href="#places">places</a>
-        <a href="#food">food</a>
-        <a href="#thoughts">tiny thoughts</a>
-      </nav>
-    </section>
+  <!-- Room Screen -->
+  <main id="room-screen" class="room-screen hidden">
+    <div class="room">
 
-    <section class="card currently">
-      <h2>currently...</h2>
-      <p><strong>listening to:</strong> something soft and a little haunted</p>
-      <p><strong>eating:</strong> probably tomato egg rice</p>
-      <p><strong>planning:</strong> busan & fukuoka</p>
-      <p><strong>feeling:</strong> a little tired, but still here</p>
-    </section>
-
-    <section id="snapshots">
-      <h2>snapshots</h2>
-      <div class="photo-grid">
-        <div class="polaroid">
-          <div class="photo-placeholder">photo 1</div>
-          <p>the sky looked soft today.</p>
-        </div>
-
-        <div class="polaroid">
-          <div class="photo-placeholder">photo 2</div>
-          <p>a small moment i wanted to keep.</p>
-        </div>
-
-        <div class="polaroid">
-          <div class="photo-placeholder">photo 3</div>
-          <p>i think i’ll miss this later.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="songs">
-      <h2>songs i loved</h2>
-
-      <div class="song-card">
-        <p class="song-title">♪ song title — artist</p>
-        <p>feels like: a little ghost sitting beside me</p>
-        <p>memory attached: late night in my room</p>
+      <!-- window -->
+      <div class="window">
+        <div class="blinds"></div>
+        <p>outside world</p>
       </div>
 
-      <div class="song-card">
-        <p class="song-title">♪ another song — artist</p>
-        <p>feels like: walking somewhere slowly</p>
-        <p>memory attached: summer evening</p>
+      <!-- photo board -->
+      <button class="hotspot photo-board" data-modal="photos">
+        <span>photo board</span>
+        <div class="mini-photo one"></div>
+        <div class="mini-photo two"></div>
+        <div class="mini-photo three"></div>
+      </button>
+
+      <!-- desk -->
+      <button class="hotspot desk" data-modal="travel">
+        <div class="journal">travel journal</div>
+      </button>
+
+      <!-- wardrobe -->
+      <button class="hotspot wardrobe" data-modal="closet">
+        <span>closet</span>
+      </button>
+
+      <!-- bed -->
+      <div class="bed">
+        <button class="hotspot girl" data-modal="playlist">
+          <span class="girl-head"></span>
+          <span class="girl-body"></span>
+          <span class="headphone">♪</span>
+        </button>
+
+        <button class="thought-bubble" data-modal="thoughts">
+          lately...
+        </button>
       </div>
-    </section>
 
-    <section id="places">
-      <h2>places</h2>
-      <div class="tag-list">
-        <span>Wuhan</span>
-        <span>Mount Holyoke</span>
-        <span>Illinois College</span>
-        <span>Chicago</span>
-        <span>Busan soon</span>
-        <span>Fukuoka soon</span>
-      </div>
-    </section>
-
-    <section id="food">
-      <h2>what i ate lately</h2>
-      <div class="note">tomato egg rice — not fancy, but warm.</div>
-      <div class="note">buldak noodles — too spicy. still ate it.</div>
-    </section>
-
-    <section id="thoughts">
-      <h2>tiny thoughts</h2>
-      <div class="thought-wall">
-        <p>some days are just for surviving gently.</p>
-        <p>i like keeping small proof that i was happy somewhere.</p>
-        <p>a song can make an ordinary night feel haunted.</p>
-      </div>
-    </section>
-
-    <footer>
-      made softly by chris ♡
-    </footer>
+      <h1 class="room-title">Chris’s little room</h1>
+    </div>
   </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <button id="close-modal" class="close-btn">×</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
