@@ -1,0 +1,460 @@
+/* =========================
+   Reset
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Caudex", serif;
+  background: #eeeeee;
+}
+
+.site {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* =========================
+   Main variables
+========================= */
+
+:root {
+  --bg-top: #f2f2f2;
+  --bg-bottom: #eeeeee;
+  --title-blue: #b9d9f2;
+
+  --door-w: clamp(230px, 18vw, 310px);
+  --door-h: clamp(370px, 52vh, 520px);
+  --door-top: 23vh;
+  --door-frame: clamp(9px, 0.8vw, 13px);
+
+  --door-blue-1: #e1f3ff;
+  --door-blue-2: #c6e3f7;
+  --door-blue-3: #b8d9f2;
+
+  --wall-shadow: rgba(220, 220, 220, 0.32);
+
+  /* JS 会自动写入这两个值，让地板梯形和门宽对齐 */
+  --floor-left: 40%;
+  --floor-right: 60%;
+}
+
+/* =========================
+   Entrance scene
+========================= */
+
+.entrance-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.72), transparent 35%),
+    linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+}
+
+.entrance-title {
+  position: absolute;
+  top: 7vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+
+  margin: 0;
+
+  font-family: "Love Light", cursive;
+  font-size: clamp(66px, 7vw, 96px);
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+
+  color: var(--title-blue);
+  opacity: 0.92;
+  text-shadow:
+    0 2px 1px rgba(255, 255, 255, 0.9),
+    0 0 8px rgba(185, 217, 242, 0.5);
+
+  pointer-events: none;
+}
+
+/* =========================
+   Wall perspective
+========================= */
+
+.wall-shape {
+  position: absolute;
+  bottom: 0;
+  width: 50vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.wall-left {
+  left: 0;
+  background: linear-gradient(
+    37deg,
+    transparent 0%,
+    transparent 56.4%,
+    var(--wall-shadow) 56.7%,
+    rgba(220, 220, 220, 0.05) 100%
+  );
+}
+
+.wall-right {
+  right: 0;
+  background: linear-gradient(
+    -37deg,
+    transparent 0%,
+    transparent 56.4%,
+    var(--wall-shadow) 56.7%,
+    rgba(220, 220, 220, 0.05) 100%
+  );
+}
+
+/* =========================
+   Floor trapezoid
+========================= */
+
+.floor-trapezoid {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--door-top) + var(--door-h) - 1px);
+
+  width: 112vw;
+  height: calc(100vh - var(--door-top) - var(--door-h) + 2px);
+
+  transform: translateX(-50%);
+  z-index: 4;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.97),
+    rgba(255, 255, 255, 1)
+  );
+
+  clip-path: polygon(
+    var(--floor-left) 0%,
+    var(--floor-right) 0%,
+    100% 100%,
+    0% 100%
+  );
+
+  pointer-events: none;
+}
+
+/* =========================
+   Door system
+========================= */
+
+.door-system {
+  position: absolute;
+  left: 50%;
+  top: var(--door-top);
+
+  width: var(--door-w);
+  height: var(--door-h);
+
+  transform: translateX(-50%);
+  z-index: 20;
+  cursor: pointer;
+}
+
+/* portal behind door */
+
+.door-portal {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background: #000000;
+  border: var(--door-frame) solid #ffffff;
+
+  opacity: 0;
+  transform: scale(1);
+  transform-origin: center center;
+}
+
+/* door leaf */
+
+.door-leaf {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  padding: 0;
+  margin: 0;
+
+  border: var(--door-frame) solid #ffffff;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+
+  transform-origin: left bottom;
+}
+
+.door-panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+  border-radius: 24px;
+
+  background:
+    radial-gradient(circle at 31% 24%, rgba(255, 255, 255, 0.72), transparent 38%),
+    linear-gradient(145deg, var(--door-blue-1) 0%, var(--door-blue-2) 64%, var(--door-blue-3) 100%);
+
+  box-shadow:
+    inset 0 0 24px rgba(255, 255, 255, 0.58),
+    inset 0 0 16px rgba(120, 165, 200, 0.14);
+}
+
+/* =========================
+   SVG star
+========================= */
+
+.door-star {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: 88%;
+  height: 92%;
+  z-index: 2;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-1deg)
+    skewX(-2deg);
+
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+.door-star svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  filter:
+    drop-shadow(0 2px 2px rgba(120, 105, 40, 0.13))
+    drop-shadow(0 0 8px rgba(255, 242, 160, 0.32));
+}
+
+/* =========================
+   Knock + knob
+========================= */
+
+.door-knock {
+  position: absolute;
+  right: 7%;
+  top: 47%;
+  z-index: 5;
+
+  font-family: "Caudex", serif;
+  font-size: clamp(14px, 1.25vw, 20px);
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(120, 120, 120, 0.25);
+
+  pointer-events: none;
+}
+
+.door-knob {
+  position: absolute;
+  right: 5.2%;
+  top: 50.5%;
+
+  width: clamp(16px, 1.5vw, 23px);
+  height: clamp(16px, 1.5vw, 23px);
+
+  z-index: 6;
+  border-radius: 50%;
+  background: #ffffff;
+
+  box-shadow:
+    3px 4px 6px rgba(90, 90, 90, 0.24),
+    inset -2px -2px 3px rgba(190, 190, 190, 0.18);
+
+  pointer-events: none;
+}
+
+/* =========================
+   Opening animation
+========================= */
+
+.entrance-scene.is-opening .door-leaf {
+  animation: doorOpenFlat 1.05s cubic-bezier(.2, .85, .18, 1) forwards;
+}
+
+.entrance-scene.is-opening .door-portal {
+  opacity: 1;
+  animation: portalZoom 1.45s cubic-bezier(.35, 0, .2, 1) 0.95s forwards;
+}
+
+.entrance-scene.is-opening .entrance-title {
+  animation: titleFade 0.9s ease forwards;
+}
+
+.entrance-scene.is-opening .door-knock {
+  animation: fadeOut 0.45s ease forwards;
+}
+
+@keyframes doorOpenFlat {
+  0% {
+    transform:
+      translateX(0)
+      rotate(0deg)
+      skewY(0deg)
+      scaleX(1);
+    opacity: 1;
+  }
+
+  55% {
+    transform:
+      translateX(-54%)
+      rotate(-2.5deg)
+      skewY(5deg)
+      scaleX(0.84);
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translateX(-78%)
+      rotate(-3.5deg)
+      skewY(7deg)
+      scaleX(0.72);
+    opacity: 1;
+  }
+}
+
+@keyframes portalZoom {
+  0% {
+    transform: scale(1);
+    filter: blur(0);
+  }
+
+  45% {
+    transform: scale(1.28);
+    filter: blur(0);
+  }
+
+  100% {
+    transform: scale(18);
+    filter: blur(2px);
+  }
+}
+
+@keyframes titleFade {
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+/* =========================
+   Black transition
+========================= */
+
+.black-transition {
+  position: fixed;
+  inset: 0;
+
+  z-index: 100;
+  background: #000000;
+  opacity: 0;
+
+  pointer-events: none;
+  transition: opacity 0.65s ease;
+}
+
+.black-transition.is-visible {
+  opacity: 1;
+}
+
+/* =========================
+   Temporary room canvas
+========================= */
+
+.room-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  background: #f7f4ef;
+}
+
+.room-canvas.is-active {
+  display: flex;
+  animation: roomLightOn 1.1s ease forwards;
+}
+
+.room-blank {
+  width: 100vw;
+  height: 100vh;
+
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.9), transparent 32%),
+    linear-gradient(180deg, #fbf8f2 0%, #eef6fb 100%);
+}
+
+@keyframes roomLightOn {
+  0% {
+    opacity: 0;
+    filter: brightness(0.2) blur(10px);
+  }
+
+  100% {
+    opacity: 1;
+    filter: brightness(1) blur(0);
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 700px) {
+  :root {
+    --door-w: clamp(190px, 48vw, 250px);
+    --door-h: clamp(330px, 56vh, 440px);
+    --door-top: 24vh;
+  }
+
+  .entrance-title {
+    top: 8vh;
+    font-size: 68px;
+  }
+
+  .floor-trapezoid {
+    width: 118vw;
+  }
+}
