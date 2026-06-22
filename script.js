@@ -1,51 +1,31 @@
-const doorScene = document.getElementById("doorScene");
-const roomScene = document.getElementById("roomScene");
-const door = document.getElementById("door");
-const knockButton = document.getElementById("knockButton");
-const backToDoor = document.getElementById("backToDoor");
+const entrance = document.querySelector("#entrance");
+const room = document.querySelector("#room");
+const enterButton = document.querySelector("#enterButton");
+const blackTransition = document.querySelector("#blackTransition");
 
-const modal = document.getElementById("modal");
-const modalTitle = document.getElementById("modalTitle");
-const modalContent = document.getElementById("modalContent");
-const closeModal = document.getElementById("closeModal");
+let isEntering = false;
 
-const interactiveObjects = document.querySelectorAll(".interactive");
+enterButton.addEventListener("click", () => {
+  if (isEntering) return;
 
-knockButton.addEventListener("click", () => {
-  door.classList.add("open");
-  knockButton.textContent = "opening...";
+  isEntering = true;
 
+  // 1. 门打开 + 黑色门洞放大
+  entrance.classList.add("entering");
+
+  // 2. 黑色门洞快铺满屏幕时，让全屏黑色遮罩出现
   setTimeout(() => {
-    doorScene.classList.add("hidden");
-    roomScene.classList.remove("hidden");
-  }, 1100);
-});
+    blackTransition.classList.add("show");
+  }, 950);
 
-backToDoor.addEventListener("click", () => {
-  roomScene.classList.add("hidden");
-  doorScene.classList.remove("hidden");
+  // 3. 全黑后，隐藏入口页，显示房间页
+  setTimeout(() => {
+    entrance.style.display = "none";
+    room.classList.add("active");
+  }, 1600);
 
-  door.classList.remove("open");
-  knockButton.textContent = "knock knock ୨୧";
-});
-
-interactiveObjects.forEach((item) => {
-  item.addEventListener("click", () => {
-    const title = item.dataset.title;
-    const content = item.dataset.content;
-
-    modalTitle.textContent = title;
-    modalContent.textContent = content;
-    modal.classList.remove("hidden");
-  });
-});
-
-closeModal.addEventListener("click", () => {
-  modal.classList.add("hidden");
-});
-
-modal.addEventListener("click", (event) => {
-  if (event.target === modal) {
-    modal.classList.add("hidden");
-  }
+  // 4. 房间准备好后，黑色慢慢褪去
+  setTimeout(() => {
+    blackTransition.classList.remove("show");
+  }, 2100);
 });
