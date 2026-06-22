@@ -3,125 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chris's Room</title>
+
+  <title>Chris' Room</title>
+
+  <!-- Google Fonts: Love Light + Caudex -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Love+Light&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- Opening Door Scene -->
-  <section id="doorScene" class="door-scene">
-    <div class="cloud cloud-one"></div>
-    <div class="cloud cloud-two"></div>
-    <div class="cloud cloud-three"></div>
+  <main class="site">
 
-    <div class="door-frame">
-      <div class="door-sign">
-        Chris’s Room
-        <span>little archive</span>
-      </div>
+    <!-- 开始页面：门 -->
+    <section class="scene entrance" id="entrance">
+      <h1 class="title">Chris’ Room</h1>
 
-      <div id="door" class="door">
-        <div class="door-window"></div>
-        <div class="door-knob"></div>
-        <div class="door-decoration">♡</div>
-      </div>
-    </div>
+      <div class="door-wrap">
+        <!-- 黑色门洞 / portal -->
+        <div class="portal" id="portal"></div>
 
-    <button id="knockButton" class="knock-button">
-      knock knock ୨୧
-    </button>
-
-    <p class="opening-text">
-      a soft blue room for photos, songs, travels, meals, and tiny thoughts
-    </p>
-  </section>
-
-  <!-- Room Scene -->
-  <main id="roomScene" class="room-scene hidden">
-    <header class="room-header">
-      <div>
-        <p class="small-label">welcome inside</p>
-        <h1>Chris’s little archive</h1>
-      </div>
-
-      <button id="backToDoor" class="small-button">back to door</button>
-    </header>
-
-    <section class="room">
-      <!-- Wall -->
-      <div class="wall">
-        <div class="window">
-          <div class="curtain curtain-left"></div>
-          <div class="curtain curtain-right"></div>
-          <div class="sky">
-            <div class="moon"></div>
-            <div class="star star-one">✦</div>
-            <div class="star star-two">✧</div>
+        <!-- 蓝色门 -->
+        <button class="door" id="enterButton" aria-label="Knock and enter Chris' Room">
+          <div class="door-panel">
+            <div class="star"></div>
+            <span class="knock">KNOCK</span>
+            <span class="door-knob"></span>
           </div>
-        </div>
-
-        <div class="photo-board interactive" data-title="snapshots" data-content="photos i took, little skies, meals, places, and small proof that i was here.">
-          <p>photo board</p>
-          <div class="mini-photo"></div>
-          <div class="mini-photo"></div>
-          <div class="mini-photo"></div>
-        </div>
-
-        <div class="shelf">
-          <div class="plant"></div>
-          <div class="book book-one"></div>
-          <div class="book book-two"></div>
-          <div class="book book-three"></div>
-        </div>
+        </button>
       </div>
 
-      <!-- Floor -->
-      <div class="floor">
-        <div class="rug"></div>
+      <!-- 地板透视 -->
+      <div class="floor"></div>
 
-      <div class="desk interactive" data-title="note to self" data-content="I believe something lovely is still blooming in me.">
-          <div class="desk-top"></div>
-          <div class="desk-leg left"></div>
-          <div class="desk-leg right"></div>
-          <div class="laptop">
-            <span>notes</span>
-          </div>
-        </div>
+      <p class="hint">click to knock</p>
+    </section>
 
-      <div class="record-player interactive" data-title="songs i loved" data-content="currently loving: eternal sunshine, positions, thank u, next, 纯妹妹, and TIAN TIAN. songs for soft mornings, dramatic nights, and walking back to my room alone.">
-          <div class="record"></div>
-          <div class="record-arm"></div>
-          <p>songs</p>
-        </div>
+    <!-- 进入后的房间页面 -->
+    <section class="scene room" id="room">
+      <div class="room-content">
+        <h2>Welcome in ✨</h2>
+        <p>This is Chris’ little room.</p>
 
-        <div class="suitcase interactive" data-title="places" data-content="places in my little suitcase: Japan, South Korea, Maldives, Dubai, Los Angeles, Chicago, Australia. some are memories, some are dreams, some are waiting for me.">
-          <div class="handle"></div>
-          <p>places</p>
-        </div>
-
-     <div class="mini-fridge interactive" data-title="what i ate" data-content="inside my tiny fridge: eggs, blueberries, cucumber, tomatoes, and potatoes. simple foods, soft days, trying to feed myself gently.">
-          <div class="fridge-handle"></div>
-        </div>
-
-        <div class="bed">
-          <div class="pillow"></div>
-          <div class="blanket"></div>
-          <p>soft corner</p>
+        <div class="room-items">
+          <div class="item">record player</div>
+          <div class="item">tiny thoughts</div>
+          <div class="item">places</div>
         </div>
       </div>
     </section>
 
-    <p class="hint">click the objects in the room ♡</p>
-  </main>
+    <!-- 黑屏过渡层 -->
+    <div class="black-transition" id="blackTransition"></div>
 
-  <!-- Popup Modal -->
-  <div id="modal" class="modal hidden">
-    <div class="modal-card">
-      <button id="closeModal" class="close-button">×</button>
-      <h2 id="modalTitle"></h2>
-      <p id="modalContent"></p>
-    </div>
-  </div>
+  </main>
 
   <script src="script.js"></script>
 </body>
